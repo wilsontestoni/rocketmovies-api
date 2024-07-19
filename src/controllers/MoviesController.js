@@ -59,7 +59,6 @@ class MoviesController {
     }
 
     const momentOfCreation = moment().format("YYYY-MM-DD HH:mm:ss");
-    console.log()
 
     const [movie_id] = await knex("movies").insert({
       title,
@@ -118,13 +117,13 @@ class MoviesController {
     movie.rating = rating ?? movie.rating;
     movie.description = description ?? movie.description;
 
-    const updated_at = moment().format("YYYY-MM-DD HH:mm:ss");
+    const momentOfAtualization = moment().format("YYYY-MM-DD HH:mm:ss");
 
     await knex("movies").where({ id: movie_id }).update({
       title,
       rating,
       description,
-      updated_at: updated_at,
+      updated_at: momentOfAtualization,
     });
 
     await knex("tags").where({ movie_id }).delete();

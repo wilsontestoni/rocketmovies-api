@@ -25,13 +25,13 @@ class UsersController {
 
     const hashedPassword = await hash(password, 8);
 
-    const created_at = moment().format("YYYY-MM-DD HH:mm:ss");
+    const momentOfCreation = moment().format("YYYY-MM-DD HH:mm:ss");
 
     await knex("users").insert({
       name,
       email,
       password: hashedPassword,
-      created_at: created_at,
+      created_at: momentOfCreation,
     });
 
     return res.status(201).json();
@@ -74,13 +74,13 @@ class UsersController {
       user.password = await hash(password, 8);
     }
 
-    const updated_at = moment().format("YYYY-MM-DD HH:mm:ss");
+    const momentOfAtualization = moment().format("YYYY-MM-DD HH:mm:ss");
 
     await knex("users").where({ id: user_id }).update({
       name: user.name,
       email: user.email,
       password: user.password,
-      updated_at: updated_at,
+      updated_at: momentOfAtualization,
     });
 
     res.json();

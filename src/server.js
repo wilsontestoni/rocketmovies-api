@@ -6,6 +6,9 @@ const cors = require("cors");
 const routes = require("./routes");
 const AppError = require("./utils/AppError");
 const multerConfig = require("./config/multerConfig");
+const moment = require('moment-timezone');
+
+moment.tz.setDefault('America/Sao_Paulo');
 
 const app = express();
 app.use(express.json());
