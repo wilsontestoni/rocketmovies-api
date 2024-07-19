@@ -58,14 +58,16 @@ class MoviesController {
       throw new AppError("Nota inválida! A nota deve ser entre 1 e 5.");
     }
 
-    const created_at = moment().format("YYYY-MM-DD HH:mm:ss");
+    const momentOfCreation = moment().format("YYYY-MM-DD HH:mm:ss");
+    console.log()
 
     const [movie_id] = await knex("movies").insert({
       title,
       description,
       rating,
       user_id,
-      created_at: created_at,
+      created_at: momentOfCreation,
+      updated_at: momentOfCreation
     });
 
     if (tags.length > 0) {
@@ -117,6 +119,7 @@ class MoviesController {
     movie.description = description ?? movie.description;
 
     const updated_at = moment().format("YYYY-MM-DD HH:mm:ss");
+
     await knex("movies").where({ id: movie_id }).update({
       title,
       rating,
