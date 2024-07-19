@@ -15,8 +15,9 @@ class DiskStorage {
   async deleteFile(file) {
     const filePath = path.resolve(multerConfig.UPLOAD_FOLDER, file);
 
+    console.log(filePath)
+
     try {
-      // retorna estatísticas sobre o arquivo
       await fs.promises.stat(file.path);
     } catch (error) {
       console.error(error);
